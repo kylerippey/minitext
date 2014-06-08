@@ -17,7 +17,6 @@ bundle install
 ## Usage
 
 First set up a gateway:
-
 ```
 Minitext::Base.gateway = Minitext::TwilioGateway.new(sid: 'your_twilio_sid', token: 'your_twilio_token')
 ```
@@ -32,12 +31,13 @@ Minitext.text(from: '1234567890', to: '9876543210', body: 'Hello world').deliver
 If you want to restrict the numbers that you can send texts to, use the `WhitelistProxy` wrapper.
 
 Set up your whitelist proxy:
+```
 whitelist = ['9876543210']
 gateway = Minitext::TwilioGateway.new(sid: 'your_twilio_sid', token: 'your_twilio_token')
 Minitext::Base.gateway = Minitext::WhitelistProxy.new(whitelist, gateway)
+```
 
 Then send some texts:
-
 ```
 Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succeed.').deliver!
 
