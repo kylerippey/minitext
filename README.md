@@ -43,3 +43,19 @@ Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succ
 
 Minitext.text(from: '1234567890', to: '5559991111', body: 'This text should silently fail.').deliver!
 ```
+
+## Testing
+
+If you do not set a gateway, Minitext uses a `TestGateway` object by default.
+
+Example test:
+```
+Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succeed.').deliver!
+
+assert_equal 1, Minitext::Base.gateway.deliveries.length
+```
+
+Don't forget to cleanup after yourself in your teardown methods:
+```
+Minitext::Base.gateway.deliveries.clear
+```
