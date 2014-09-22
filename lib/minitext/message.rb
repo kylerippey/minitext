@@ -1,6 +1,6 @@
 module Minitext
   class Message
-    attr_accessor :from, :to, :body
+    attr_accessor :from, :to, :body, :defaults
 
     def initialize(params)
       params.each do |attr, value|

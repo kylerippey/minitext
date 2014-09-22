@@ -22,16 +22,25 @@ module Minitext
     end
 
     def test_send_without_defaults_raise_exception
-      assert_nothing_raised MissingParameter do
-        Message.new(from: '1234567890', to: '5558675309').deliver!
-      end
-
+      Minitext.setup defaults: { from: '1234567890' }
       assert_nothing_raised MissingParameter do
         Message.new(to: '5558675309', body: 'This is a test text.').deliver!
       end
 
+      Minitext.setup defaults: { to: '5558675309' }
       assert_nothing_raised MissingParameter do
-        Message.new(to: '5558675309', from: '1234567890').deliver!
+        Message.new(from: '1234567890', body: 'This is a test text.').deliver!
+      end
+
+      Minitext.setup defaults: { body: 'This is a test text.' }
+      assert_nothing_raised MissingParameter do
+        Message.new(from: '1234567890', to: '5558675309').deliver!
+      end
+    end
+
+    def test_unrecognized_defaults
+      assert_raised InvalidParameter do
+        Minitext.setup defaults: { hello: 'This is invalid as it is unrecognized' }
       end
     end
 
