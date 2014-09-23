@@ -3,8 +3,6 @@ require 'test_helper'
 module Minitext
   class DefaultSettingsTest < Minitest::Test
 
-    i_suck_and_my_tests_are_order_dependent!
-
     def test_default_settings_set
       Message.defaults = { from: '1234567890', to: '2222222222', body: 'default message' }
       assert_equal Message.defaults[:from], '1234567890'
@@ -22,13 +20,7 @@ module Minitext
       Message.defaults = { body: 'This is a test' }
       assert Message.new(from: '1234567890', to: '5558675309').valid?, 'Default field not found'
     end
-
-    def test_unrecognized_defaults
-      assert_raises InvalidParameter do
-        Message.defaults = { hello: 'This is invalid as it is unrecognized' }
-      end
-    end
-
   end
+
 end
 
