@@ -4,11 +4,11 @@ module Minitext
   class DefaultSettingsTest < Minitest::Test
 
     def setup
-      Minitext::Base.gateway = Minitext::TestGateway.new
+      Minitext.gateway = Minitext::TestGateway.new
     end
 
     def teardown
-      Minitext::Base.gateway.deliveries.clear
+      Minitext.gateway.deliveries.clear
     end
 
     def test_default_settings_set

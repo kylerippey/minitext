@@ -20,7 +20,7 @@ module Minitext
 
     def deliver
       if valid?
-        Minitext::Base.gateway.deliver(self)
+        Minitext.gateway.deliver(self)
       else
         raise_errors
       end

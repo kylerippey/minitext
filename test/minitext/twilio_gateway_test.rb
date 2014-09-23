@@ -12,7 +12,7 @@ module Minitext
 
       Twilio::REST::Client.any_instance.expects(:sms).returns(sms_mock)
 
-      Minitext::Base.gateway = Minitext::TwilioGateway.new(sid: '123', token: 'abc')
+      Minitext.gateway = Minitext::TwilioGateway.new(sid: '123', token: 'abc')
       Minitext.set_defaults({})
     end
 
