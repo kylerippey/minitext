@@ -9,7 +9,7 @@ module Minitext
     end
 
     def self.defaults
-      return @@defaults
+      @@defaults
     end
 
     def initialize(params)
