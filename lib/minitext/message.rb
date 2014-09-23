@@ -1,9 +1,19 @@
 module Minitext
   class Message
-    attr_accessor :from, :to, :body, :defaults
+    @@defaults = {}
+
+    attr_accessor :from, :to, :body
+
+    def self.defaults=(params)
+      @@defaults = params
+    end
+
+    def self.defaults
+      return @@defaults
+    end
 
     def initialize(params)
-      params.each do |attr, value|
+      params.merge!(@@defaults).each do |attr, value|
         self.public_send("#{attr}=", value)
       end
     end
