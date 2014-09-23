@@ -2,6 +2,16 @@ require 'test_helper'
 
 module Minitext
   class MessageTest < Minitest::Test
+
+    def setup
+      Minitext::Base.gateway = Minitext::TestGateway.new
+      Minitext.set_defaults({})
+    end
+
+    def teardown
+      Minitext::Base.gateway.deliveries.clear
+    end
+
     def test_valid_messages_return_true
       assert Message.new(from: '1234567890', to: '5558675309', body: 'This is a test text.').valid?
     end

@@ -5,6 +5,11 @@ module Minitext
 
     def setup
       Minitext::Base.gateway = Minitext::WhitelistProxy.new('5558675309')
+      Minitext.set_defaults({})
+    end
+
+    def teardown
+      Minitext::Base.gateway.deliveries.clear
     end
 
     def test_can_deliver_to_whitelisted_recipients

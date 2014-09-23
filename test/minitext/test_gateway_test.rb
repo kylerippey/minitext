@@ -2,8 +2,10 @@ require 'test_helper'
 
 module Minitext
   class TestGatewayTest < Minitest::Test
+
     def setup
       Minitext::Base.gateway = Minitext::TestGateway.new
+      Minitext.set_defaults({})
     end
 
     def teardown
@@ -19,6 +21,7 @@ module Minitext
     end
 
     def test_cannot_deliver_invalid_texts
+
       assert_raises MissingParameter do
         Minitext.text(from: '1234567890', to: '5558675309').deliver
       end
