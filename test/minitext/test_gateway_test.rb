@@ -13,14 +13,14 @@ module Minitext
     def test_can_deliver_valid_texts
       assert Minitext::Base.gateway.deliveries.empty?
 
-      Minitext.text(from: '1234567890', to: '5558675309', body: 'This is a test text.').deliver!
+      Minitext.text(from: '1234567890', to: '5558675309', body: 'This is a test text.').deliver
 
       assert_equal 1, Minitext::Base.gateway.deliveries.length
     end
 
     def test_cannot_deliver_invalid_texts
       assert_raises MissingParameter do
-        Minitext.text(from: '1234567890', to: '5558675309').deliver!
+        Minitext.text(from: '1234567890', to: '5558675309').deliver
       end
 
       assert Minitext::Base.gateway.deliveries.empty?

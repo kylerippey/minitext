@@ -15,11 +15,11 @@ module Minitext
 
     def test_invalid_messages_raise_appropriate_exceptions
       assert_raises MissingParameter do
-        Message.new(from: '1234567890', to: '5558675309').deliver!
+        Message.new(from: '1234567890', to: '5558675309').deliver
       end
 
       assert_raises MissingParameter do
-        Message.new(from: '1234567890', to: '', body: 'This is a test text.').deliver!
+        Message.new(from: '1234567890', to: '', body: 'This is a test text.').deliver
       end
     end
   end

@@ -7,6 +7,10 @@ module Minitext
       Minitext::Base.gateway = Minitext::TestGateway.new
     end
 
+    def teardown
+      Minitext::Base.gateway.deliveries.clear
+    end
+
     def test_default_settings_set
       Minitext.set_defaults(from: '1234567890', to: '5558675309', body: 'This is a test text.')
       assert_equal Message.defaults[:from], '1234567890'

@@ -18,7 +18,7 @@ module Minitext
       end
     end
 
-    def deliver!
+    def deliver
       if valid?
         Minitext::Base.gateway.deliver(self)
       else

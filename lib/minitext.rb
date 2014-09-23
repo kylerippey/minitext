@@ -1,7 +1,6 @@
 module Minitext
   autoload :Base, 'minitext/base'
   autoload :Message, 'minitext/message'
-  autoload :InvalidParameter, 'minitext/errors'
   autoload :MissingParameter, 'minitext/errors'
   autoload :TestGateway, 'minitext/test_gateway'
   autoload :TwilioGateway, 'minitext/twilio_gateway'
