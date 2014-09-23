@@ -9,8 +9,8 @@ module Minitext
     end
   end
 
-  def self.setup(params)
-    Message.defaults.merge!(params)
+  def self.set_defaults(params={})
+    Message.defaults = params
   end
 
   def self.text(params)
