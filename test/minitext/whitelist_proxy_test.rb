@@ -5,7 +5,7 @@ module Minitext
 
     def setup
       Minitext.gateway = Minitext::WhitelistProxy.new('5558675309')
-      Minitext.set_defaults({})
+      Minitext.defaults = {}
     end
 
     def teardown

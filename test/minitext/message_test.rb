@@ -5,7 +5,7 @@ module Minitext
 
     def setup
       Minitext.gateway = Minitext::TestGateway.new
-      Minitext.set_defaults({})
+      Minitext.defaults = {}
     end
 
     def teardown

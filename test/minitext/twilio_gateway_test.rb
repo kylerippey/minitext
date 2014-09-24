@@ -13,7 +13,7 @@ module Minitext
       Twilio::REST::Client.any_instance.expects(:sms).returns(sms_mock)
 
       Minitext.gateway = Minitext::TwilioGateway.new(sid: '123', token: 'abc')
-      Minitext.set_defaults({})
+      Minitext.defaults = {}
     end
 
     def test_can_deliver_valid_messages_to_twilio
