@@ -3,21 +3,22 @@ module Minitext
     attr_accessor :from, :to, :body, :gateway
 
     def initialize(params)
-      params.merge!(Minitext.defaults).each do |attr, value|
+      params.each do |attr, value|
         self.public_send("#{attr}=", value)
       end
     end
 
+    def deliver!
+      deliver || raise_errors
+    end
+
     def deliver
-      if valid?
-        gateway.deliver(self)
-      else
-        raise_errors
-      end
+      return false unless valid?
+      !!gateway.deliver(self)
     end
 
     def valid?
-      valid_param?(from) && valid_param?(to) && valid_param?(body)
+      valid_param?(from) && valid_param?(to) && valid_param?(body) && !gateway.nil?
     end
 
     protected

@@ -23,7 +23,7 @@ module Minitext
     def test_cannot_deliver_invalid_texts
 
       assert_raises MissingParameter do
-        Minitext.text(from: '1234567890', to: '5558675309').deliver
+        Minitext.text(from: '1234567890', to: '5558675309').deliver!
       end
 
       assert Minitext.gateway.deliveries.empty?
