@@ -16,6 +16,10 @@ module Minitext
       assert Message.new(from: '1234567890', to: '5558675309', body: 'This is a test text.').valid?
     end
 
+    def test_ability_to_pass_gateway
+      assert Message.new(from: '1234567890', to: '5558675309', body: 'This is a test text.', gateway: Minitext::TestGateway.new ).valid?
+    end
+
     def test_invalid_messages_return_false
       assert !Message.new(from: '1234567890', to: '5558675309').valid?
       assert !Message.new(to: '5558675309', body: 'This is a test text.').valid?
