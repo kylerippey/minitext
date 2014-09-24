@@ -1,8 +1,8 @@
 module Minitext
   class Message
-    @@defaults = {}
-
     attr_accessor :from, :to, :body
+
+    @@defaults = {}
 
     def self.defaults=(params)
       @@defaults = params
