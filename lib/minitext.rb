@@ -17,21 +17,15 @@ module Minitext
   end
 
   def self.defaults
-    @@defaults
+    {gateway: @@gateway}.merge(@@defaults)
   end
 
-  def self.defaults=(defaults={})
+  def self.defaults=(defaults)
     @@defaults = defaults
   end
 
   def self.text(params)
-    gateway = params.fetch(:gateway, {})
-
-    if gateway.empty?
-      params = params.merge({ gateway: @@gateway })
-    end
-
-    Message.new(params)
+    Message.new(defaults.merge(params))
   end
 end
 
