@@ -1,3 +1,3 @@
 module Minitext
-  class MissingParameter < Exception; end
+  class MissingParameter < StandardError; end
 end

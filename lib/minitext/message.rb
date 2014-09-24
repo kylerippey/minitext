@@ -1,6 +1,6 @@
 module Minitext
   class Message
-    attr_accessor :from, :to, :body
+    attr_accessor :from, :to, :body, :gateway
 
     def initialize(params)
       params.each do |attr, value|
@@ -9,15 +9,16 @@ module Minitext
     end
 
     def deliver!
-      if valid?
-        Minitext::Base.gateway.deliver(self)
-      else
-        raise_errors
-      end
+      deliver || raise_errors
+    end
+
+    def deliver
+      return false unless valid?
+      !!gateway.deliver(self)
     end
 
     def valid?
-      valid_param?(from) && valid_param?(to) && valid_param?(body)
+      valid_param?(from) && valid_param?(to) && valid_param?(body) && !gateway.nil?
     end
 
     protected

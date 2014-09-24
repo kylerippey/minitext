@@ -6,7 +6,7 @@ module Minitext
     config.minitext = ActiveSupport::OrderedOptions.new
 
     initializer "minitext.configure" do |app|
-      Minitext::Base.gateway = app.config.minitext.gateway
+      Minitext.gateway = app.config.minitext.gateway
     end
   end
 end
