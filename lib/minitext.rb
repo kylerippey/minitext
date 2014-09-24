@@ -25,6 +25,12 @@ module Minitext
   end
 
   def self.text(params)
+    gateway = params.fetch(:gateway, {})
+
+    if gateway.empty?
+      params = params.merge({ gateway: @@gateway })
+    end
+
     Message.new(params)
   end
 end

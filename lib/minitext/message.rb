@@ -1,6 +1,6 @@
 module Minitext
   class Message
-    attr_accessor :from, :to, :body
+    attr_accessor :from, :to, :body, :gateway
 
     def initialize(params)
       params.merge!(Minitext.defaults).each do |attr, value|
@@ -10,7 +10,7 @@ module Minitext
 
     def deliver
       if valid?
-        Minitext.gateway.deliver(self)
+        gateway.deliver(self)
       else
         raise_errors
       end
