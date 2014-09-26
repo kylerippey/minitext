@@ -4,11 +4,12 @@ module Minitext
   class MessageTest < Minitest::Test
 
     def setup
+      Minitext.gateway = Minitext::TestGateway.new
       Minitext.defaults = {}
     end
 
     def teardown
-      Minitext.gateway.deliveries.clear if !Minitext.gateway.nil?
+      Minitext.gateway.deliveries.clear
     end
 
     def test_valid_messages_return_true

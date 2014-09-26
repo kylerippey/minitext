@@ -9,7 +9,7 @@ module Minitext
     end
 
     def teardown
-      Minitext.gateway.deliveries.clear if !Minitext.gateway.nil?
+      Minitext.gateway.deliveries.clear
     end
 
     def test_single_defaults
@@ -24,4 +24,3 @@ module Minitext
     end
   end
 end
-
