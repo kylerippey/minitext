@@ -5,23 +5,20 @@ module Minitext
   autoload :TwilioGateway, 'minitext/twilio_gateway'
   autoload :WhitelistProxy, 'minitext/whitelist_proxy'
 
-  @@gateway  = TestGateway.new
-  @@defaults = {}
-
   def self.gateway
-    @@gateway
+    @gateway ||= TestGateway.new
   end
 
   def self.gateway=(gateway)
-    @@gateway = gateway
+    @gateway = gateway
   end
 
   def self.defaults
-    {gateway: @@gateway}.merge(@@defaults)
+    {gateway: gateway}.merge(@defaults)
   end
 
   def self.defaults=(defaults)
-    @@defaults = defaults
+    @defaults = defaults
   end
 
   def self.text(params)
