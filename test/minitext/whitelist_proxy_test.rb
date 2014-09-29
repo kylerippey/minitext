@@ -4,7 +4,7 @@ module Minitext
   class WhitelistProxyTest < Minitest::Test
 
     def setup
-      Minitext.gateway = Minitext::WhitelistProxy.new('5558675309')
+      Minitext.gateway = Minitext::WhitelistProxy.new(whitelist: ['5558675309'])
       Minitext.defaults = {}
     end
 

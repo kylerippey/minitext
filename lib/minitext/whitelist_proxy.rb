@@ -2,9 +2,9 @@ module Minitext
   class WhitelistProxy
     attr_reader :whitelist, :gateway
     
-    def initialize(whitelist=[], gateway=TestGateway.new)
-      @whitelist = Array(whitelist)
-      @gateway = gateway
+    def initialize(params)
+      @whitelist = Array(params.fetch(:whitelist) {Hash.new})
+      @gateway = params.fetch(:gateway) {TestGateway.new}
     end
 
     def deliver(message)
