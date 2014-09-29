@@ -18,12 +18,12 @@ bundle install
 
 First set up a gateway:
 ```
-Minitext::Base.gateway = Minitext::TwilioGateway.new(sid: 'your_twilio_sid', token: 'your_twilio_token')
+Minitext.gateway = Minitext::TwilioGateway.new(sid: 'your_twilio_sid', token: 'your_twilio_token')
 ```
 
 Then send some texts:
 ```
-Minitext.text(from: '1234567890', to: '9876543210', body: 'Hello world').deliver!
+Minitext.text(from: '1234567890', to: '9876543210', body: 'Hello world').deliver
 ```
 
 ### Whitelist proxy
@@ -33,15 +33,15 @@ If you want to restrict the numbers that you can send texts to, use the `Whiteli
 Set up your whitelist proxy:
 ```
 whitelist = ['9876543210']
-gateway = Minitext::TwilioGateway.new(sid: 'your_twilio_sid', token: 'your_twilio_token')
-Minitext::Base.gateway = Minitext::WhitelistProxy.new(whitelist, gateway)
+twilio_gateway = Minitext::TwilioGateway.new(sid: 'your_twilio_sid', token: 'your_twilio_token')
+Minitext::Base.gateway = Minitext::WhitelistProxy.new(whitelist: whitelist, gateway: twilio_gateway)
 ```
 
 Then send some texts:
 ```
-Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succeed.').deliver!
+Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succeed.').deliver
 
-Minitext.text(from: '1234567890', to: '5559991111', body: 'This text should silently fail.').deliver!
+Minitext.text(from: '1234567890', to: '5559991111', body: 'This text should fail.').deliver
 ```
 
 ## Testing
@@ -50,12 +50,12 @@ If you do not set a gateway, Minitext uses a `TestGateway` object by default.
 
 Example test:
 ```
-Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succeed.').deliver!
+Minitext.text(from: '1234567890', to: '9876543210', body: 'This text should succeed.').deliver
 
-assert_equal 1, Minitext::Base.gateway.deliveries.length
+assert_equal 1, Minitext.gateway.deliveries.length
 ```
 
 Don't forget to cleanup after yourself in your teardown methods:
 ```
-Minitext::Base.gateway.deliveries.clear
+Minitext.gateway.deliveries.clear
 ```
