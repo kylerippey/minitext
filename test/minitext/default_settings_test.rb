@@ -2,14 +2,13 @@ require 'test_helper'
 
 module Minitext
   class DefaultSettingsTest < Minitest::Test
-
     def setup
       Minitext.gateway = Minitext::TestGateway.new
-      Minitext.defaults = {}
     end
 
-    def teardown
-      Minitext.gateway.deliveries.clear
+    def test_no_defaults
+      Minitext.defaults = nil
+      assert Minitext.text(from: '1234567890', to: '5558675309', body: 'This is a test text.').valid?
     end
 
     def test_single_defaults

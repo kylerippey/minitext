@@ -14,6 +14,7 @@ module Minitext
   end
 
   def self.defaults
+    @defaults ||= {}
     {gateway: gateway}.merge(@defaults)
   end
 
