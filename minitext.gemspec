@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "minitext"
-  s.version = "0.0.5"
+  s.version = "0.0.6"
   s.description = 'A lightweight SMS framework'
   s.summary = ''
 
