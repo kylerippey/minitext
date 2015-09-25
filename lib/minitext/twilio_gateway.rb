@@ -9,11 +9,11 @@ module Minitext
       token = config[:token]
       subaccount = config[:subaccount]
       @client = Twilio::REST::Client.new(sid, token)
-      @client = client.accounts.find(subaccount) if subaccount
+      @client = client.accounts.get(subaccount) if subaccount
     end
 
     def deliver(message)
-      client.sms.messages.create(
+      client.messages.create(
         from: message.from,
         to: message.to,
         body: message.body.strip,
