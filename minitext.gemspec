@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "minitext"
-  s.version = "0.0.6"
+  s.version = "0.0.7"
   s.description = 'A lightweight SMS framework'
   s.summary = ''
 
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "kylerippey@gmail.com"
   s.homepage = "http://github.com/kylerippey/minitext"
 
-  s.add_dependency 'twilio-ruby'
+  s.add_dependency 'twilio-ruby', '> 3.11.0'
 
   s.files = Dir["lib/**/*"] + ["Rakefile"]
   s.test_files = Dir.glob('test/*_test.rb')
