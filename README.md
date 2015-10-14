@@ -1,4 +1,5 @@
 # minitext
+![build status](https://travis-ci.org/kylerippey/minitext.svg)
 
 A simple little gem to send SMS messages via Twilio.
 
