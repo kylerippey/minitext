@@ -17,6 +17,7 @@ module Minitext
         from: message.from,
         to: message.to,
         body: message.body.strip,
+        media_url: message.media_url,
       )
     end
   end
