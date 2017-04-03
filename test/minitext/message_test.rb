@@ -8,6 +8,7 @@ module Minitext
 
     def test_valid_messages_return_true
       assert Minitext.text(from: '1234567890', to: '5558675309', body: 'This is a test text.').valid?
+      assert Minitext.text(from: '1234567890', to: '5558675309', body: 'This is a test text.', media_url: 'http://example.com').valid?
     end
 
     def test_invalid_messages_return_false
@@ -15,6 +16,7 @@ module Minitext
       assert !Minitext.text(to: '5558675309', body: 'This is a test text.').valid?
       assert !Minitext.text(from: '1234567890', body: 'This is a test text.').valid?
       assert !Minitext.text(from: '1234567890', to: '5558675309', body: '').valid?
+      assert !Minitext.text(from: '1234567890', to: '5558675309', body: 'test body', media_url: '').valid?
     end
 
     def test_ability_to_pass_gateway
