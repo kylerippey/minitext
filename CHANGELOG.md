@@ -4,7 +4,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 CHANGELOG inspiration from http://keepachangelog.com/.
 
 ## Unreleased
-* add media_url for mms
 
-## [x.x.x] - April 3, 2017
-* 
+## [0.0.8] - April 3, 2017
+* add media_url for mms from @jsparling
