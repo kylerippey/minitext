@@ -27,7 +27,7 @@ Then send some texts:
 Minitext.text(from: '1234567890', to: '9876543210', body: 'Hello world').deliver
 ```
 
-YOu can send mms texts with a media_url:
+You can send mms texts with a media_url:
 ```
 Minitext.text(from: '1234567890', to: '9876543210', body: 'Hello world', media_url: 'http://link-to-your-media.com/test.jpg').deliver
 ```
