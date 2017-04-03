@@ -1,5 +1,5 @@
 # minitext
-![build status](https://travis-ci.org/kylerippey/minitext.svg)
+[![Build Status](https://travis-ci.org/kylerippey/minitext.svg?branch=master)](https://travis-ci.org/kylerippey/minitext)
 
 A simple little gem to send SMS messages via Twilio.
 
