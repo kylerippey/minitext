@@ -13,11 +13,18 @@ module Minitext
     end
 
     def deliver(message)
-      client.messages.create(
+      params = {
         from: message.from,
         to: message.to,
         body: message.body.strip,
-        media_url: message.media_url,
+      }
+
+      unless message.media_url.nil?
+        params = params.merge(media_url: message.media_url)
+      end
+
+      client.messages.create(
+        params
       )
     end
   end
