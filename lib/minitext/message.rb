@@ -18,10 +18,14 @@ module Minitext
     end
 
     def valid?
-      valid_param?(from) && valid_param?(to) && valid_param?(body) && !gateway.nil?
+      valid_param?(from) && valid_param?(to) && valid_param?(body) && valid_optional_param?(media_url) && !gateway.nil?
     end
 
     protected
+
+    def valid_optional_param?(param)
+      param.nil? || valid_param?(param)
+    end
 
     def valid_param?(param)
       !(param.nil? || param.empty?)
