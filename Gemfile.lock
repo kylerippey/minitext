@@ -1,0 +1,43 @@
+PATH
+  remote: .
+  specs:
+    minitext (1.0.0)
+      twilio-ruby (~> 6.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (2.7.6)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    jwt (2.7.1)
+    mini_portile2 (2.8.2)
+    minitest (5.18.1)
+    mocha (2.0.4)
+      ruby2_keywords (>= 0.0.5)
+    nokogiri (1.15.2)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.15.2-x86_64-linux)
+      racc (~> 1.4)
+    racc (1.7.1)
+    rake (13.0.6)
+    ruby2_keywords (0.0.5)
+    twilio-ruby (6.1.0)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, < 3.0)
+      nokogiri (>= 1.6, < 2.0)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  minitest
+  minitext!
+  mocha
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.4.14

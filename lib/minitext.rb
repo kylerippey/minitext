@@ -1,32 +1,29 @@
+# frozen_string_literal: true
+
+require_relative "minitext/allowlist_proxy"
+require_relative "minitext/configuration"
+require_relative "minitext/message"
+require_relative "minitext/test_gateway"
+require_relative "minitext/twilio_gateway"
+require_relative "minitext/version"
+
 module Minitext
-  autoload :Message, 'minitext/message'
-  autoload :MissingParameter, 'minitext/missing_parameter'
-  autoload :TestGateway, 'minitext/test_gateway'
-  autoload :TwilioGateway, 'minitext/twilio_gateway'
-  autoload :WhitelistProxy, 'minitext/whitelist_proxy'
+  class Error < StandardError; end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure(&block)
+    yield(configuration)
+  end
 
   def self.gateway
-    @gateway ||= TestGateway.new
+    configuration.gateway
   end
 
-  def self.gateway=(gateway)
-    @gateway = gateway
-  end
-
-  def self.defaults
-    @defaults ||= {}
-    {gateway: gateway}.merge(@defaults)
-  end
-
-  def self.defaults=(defaults)
-    @defaults = defaults
-  end
-
-  def self.text(params)
-    Message.new(defaults.merge(params))
+  def self.text(**kwargs)
+    Message.new(**configuration.message_defaults.merge(gateway: configuration.gateway).merge(kwargs))
   end
 end
 
-if defined?(Rails)
-  require 'minitext/railtie'
-end

@@ -1,51 +1,21 @@
 module Minitext
   class Message
-    attr_accessor :from, :to, :body, :gateway, :media_url
+    attr_accessor :from, :messaging_service_sid, :to, :body, :gateway, :media_url
 
-    def initialize(params)
-      params.each do |attr, value|
-        self.public_send("#{attr}=", value)
+    def initialize(to:, body:, gateway:, from: nil, messaging_service_sid: nil, media_url: nil)
+      if from.nil? && messaging_service_sid.nil?
+        raise ArgumentError.new("must supply either the 'from' or 'messaging_service_sid' argument")
       end
-    end
 
-    def deliver!
-      deliver || raise_errors
+      @gateway = gateway
+      @messaging_service_sid = messaging_service_sid
+      @from = from
+      @to = to
+      @body = body
     end
 
     def deliver
-      return false unless valid?
-      !!gateway.deliver(self)
-    end
-
-    def valid?
-      valid_param?(from) && valid_param?(to) && valid_param?(body) && valid_optional_param?(media_url) && !gateway.nil?
-    end
-
-    protected
-
-    def valid_optional_param?(param)
-      param.nil? || valid_param?(param)
-    end
-
-    def valid_param?(param)
-      !(param.nil? || param.empty?)
-    end
-
-    def raise_errors
-      case
-      when !valid_param?(from)
-        raise_missing_parameter('from')
-      when !valid_param?(to)
-        raise_missing_parameter('to')
-      when !valid_param?(body)
-        raise_missing_parameter('body')
-      end
-    end
-
-    protected
-
-    def raise_missing_parameter(param)
-      raise Minitext::MissingParameter.new("#{param} parameter cannot be nil or empty")
+      gateway.deliver(self)
     end
   end
 end
