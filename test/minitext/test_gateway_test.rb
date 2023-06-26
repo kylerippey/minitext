@@ -2,13 +2,7 @@ require 'test_helper'
 
 module Minitext
   class TestGatewayTest < Minitest::Test
-
     def setup
-      Minitext.gateway = Minitext::TestGateway.new
-      Minitext.defaults = {}
-    end
-
-    def teardown
       Minitext.gateway.deliveries.clear
     end
 
@@ -21,9 +15,8 @@ module Minitext
     end
 
     def test_cannot_deliver_invalid_texts
-
-      assert_raises MissingParameter do
-        Minitext.text(from: '1234567890', to: '5558675309').deliver!
+      assert_raises ArgumentError do
+        Minitext.text(from: '1234567890', to: '5558675309')
       end
 
       assert Minitext.gateway.deliveries.empty?

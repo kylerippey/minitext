@@ -6,12 +6,17 @@ module Minitext
 
     def setup
       messages_mock = mock()
-      messages_mock.expects(:create).with({to: '5558675309', from: '1234567890', body: 'This is a test.'}).returns(true)
+      messages_mock.expects(:create).with(to: '5558675309', from: '1234567890', body: 'This is a test.').returns(true)
 
       Twilio::REST::Client.any_instance.expects(:messages).returns(messages_mock)
 
-      Minitext.gateway = Minitext::TwilioGateway.new(sid: '123', token: 'abc')
-      Minitext.defaults = {}
+      Minitext.configure do |config|
+        config.gateway = Minitext::TwilioGateway.new(account_sid: '123', auth_token: 'abc')
+      end
+    end
+
+    def teardown
+      Minitext.configuration.reset!
     end
 
     def test_can_deliver_valid_messages_to_twilio
